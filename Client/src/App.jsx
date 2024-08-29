@@ -52,13 +52,13 @@ export default function App() {
       return;
     }
 
-    setLoading(true);
-    setShowLoader(true);
+    // setLoading(true);
+    // setShowLoader(true);
 
-    const payload = {
-      text: textValue,
-      type: "text",
-    };
+    // const payload = {
+    //   text: textValue,
+    //   type: "text",
+    // };
 
     // fetch("http://localhost:3000/text", {
     //   method: "POST",
@@ -122,6 +122,54 @@ export default function App() {
     } else if (selectedTab === "file") {
       handleFileSubmit();
     }
+    setFetchedData(d.data); 
+    setAlertMessage("Extracted successfully!");
+    setTextValue("");  // Clear text
+    setFileName(null); // Clear file
+    setLoading(false);
+    setShowLoader(false);
+    setShowJsonDialog(true); 
+
+  };
+
+
+  const formatJsonData = (data) => {
+    if (!data) return "No data available";
+
+    return data.map((item, index) => (
+      <div key={index} className="mb-4">
+        <h3 className="font-semibold text-lg">Conversation {index + 1}</h3>
+        {item.conversations.map((conv, idx) => (
+          <div key={idx} className="p-2 border border-gray-300 rounded mb-2">
+            <h4 className="font-medium">Conversation {idx + 1}</h4>
+            <div>
+              <strong>Company Policies:</strong>
+              <ul>
+                {Object.entries(conv.company_policies).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>Customer Objections:</strong>
+              <ul>
+                {Object.entries(conv.customer_objections).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>Customer Requirements:</strong>
+              <ul>
+                {Object.entries(conv.customer_requirements).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    ));
   };
 
   return (
@@ -197,8 +245,6 @@ export default function App() {
                     >
                       {loading ? "Loading..." : "Submit"}
                     </Button>
-                    <Csv data={fetchedData} />
-                    <Pdf data={fetchedData} />
                   </div>
                 </TabsContent>
                 <TabsContent value="file">
@@ -287,9 +333,12 @@ export default function App() {
                     <div className="overflow-auto max-h-96">
                       {formatJsonData(fetchedData)}
                     </div>
+                    
                   </AlertDialogDescription>
                   <div className="flex gap-4 mt-4">
                     <AlertDialogAction onClick={() => setShowJsonDialog(false)}>OK</AlertDialogAction>
+                    <Csv data={fetchedData} />
+                    <Pdf data={fetchedData} />
                   </div>
                 </AlertDialogContent>
               </AlertDialog>

@@ -1,5 +1,6 @@
-import React from 'react';
-import jsPDF from 'jspdf';
+import React from "react";
+import jsPDF from "jspdf";
+import { Button } from "@/components/ui/button";
 
 function Pdf({ data }) {
   const handleDownload = () => {
@@ -17,33 +18,35 @@ function Pdf({ data }) {
 
       // Add company policies
       doc.setFontSize(12);
-      doc.text('Company Policies:', 10, 20);
-      Object.entries(item.conversations[0].company_policies).forEach(([key, value], i) => {
-        doc.text(`${key}: ${value}`, 10, 30 + i * 10);
-      });
+      doc.text("Company Policies:", 10, 20);
+      Object.entries(item.conversations[0].company_policies).forEach(
+        ([key, value], i) => {
+          doc.text(`${key}: ${value}`, 10, 30 + i * 10);
+        }
+      );
 
       // Add customer objections
-      doc.text('Customer Objections:', 10, 50);
-      Object.entries(item.conversations[0].customer_objections).forEach(([key, value], i) => {
-        doc.text(`${key}: ${value}`, 10, 60 + i * 10);
-      });
+      doc.text("Customer Objections:", 10, 80);
+      Object.entries(item.conversations[0].customer_objections).forEach(
+        ([key, value], i) => {
+          doc.text(`${key}: ${value}`, 10, 100 + i * 10);
+        }
+      );
 
       // Add customer requirements
-      doc.text('Customer Requirements:', 10, 90);
-      Object.entries(item.conversations[0].customer_requirements).forEach(([key, value], i) => {
-        doc.text(`${key}: ${value}`, 10, 100 + i * 10);
-      });
+      doc.text("Customer Requirements:", 10, 150);
+      Object.entries(item.conversations[0].customer_requirements).forEach(
+        ([key, value], i) => {
+          doc.text(`${key}: ${value}`, 10, 170 + i * 10);
+        }
+      );
     });
 
     // Save the PDF
-    doc.save('data.pdf');
+    doc.save("data.pdf");
   };
 
-  return (
-    <button onClick={handleDownload}>
-      Download as PDF
-    </button>
-  );
+  return <Button onClick={handleDownload}>Download as PDF</Button>;
 }
 
 export default Pdf;
