@@ -17,7 +17,7 @@ let d = {
           },
           customer_requirements: {
             car_type: "compact SUV",
-            color: "",
+            color: "white",
             distance_travelled: "",
             fuel_type: "diesel",
             make_year: "2017 or newer",
@@ -44,7 +44,7 @@ let d = {
           },
           customer_requirements: {
             car_type: "Sedan",
-            color: "",
+            color: "red",
             distance_travelled: "",
             fuel_type: "",
             make_year: "2015 or 2014",
@@ -71,7 +71,7 @@ let d = {
           },
           customer_requirements: {
             car_type: "",
-            color: "",
+            color: "green",
             distance_travelled: "",
             fuel_type: "Petrol",
             make_year: "2017 or 2014",
