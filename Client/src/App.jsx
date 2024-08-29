@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,24 @@ import { Textarea } from "@/components/ui/textarea";
 import d from "./data/data";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog";
 import axios from "axios";
-import Csv from './components/csv';
+import Csv from "./components/csv";
+import Pdf from "./components/pdf";
 
 export default function App() {
   const [selectedTab, setSelectedTab] = useState("text");
@@ -23,7 +37,7 @@ export default function App() {
   const [showLoader, setShowLoader] = useState(false);
   const [fetchedData, setFetchedData] = useState(d.data);
   console.log(d.data);
-  
+
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -31,13 +45,45 @@ export default function App() {
     }
   };
 
-  const handleSubmit = () => {
-    if (selectedTab === "text" && textValue.trim() === "") {
+  const handleTextSubmit = () => {
+    if (textValue.trim() === "") {
       alert("Please enter some text.");
       return;
     }
 
-    if (selectedTab === "file" && !fileName) {
+    setLoading(true);
+    setShowLoader(true);
+
+    const payload = {
+      text: textValue,
+      type: "text",
+    };
+
+    // fetch("http://localhost:3000/text", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setAlertMessage("Text processed successfully!");
+    //     setTextValue(""); // Clear text
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //     setAlertMessage("Processing failed. Please try again.");
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //     setShowLoader(false);
+    //     setShowAlert(true);
+    //   });
+  };
+  const handleFileSubmit = () => {
+    if (!fileName) {
       alert("Please select a file to upload.");
       return;
     }
@@ -46,60 +92,74 @@ export default function App() {
     setShowLoader(true);
 
     const formData = new FormData();
-    if (selectedTab === "text") {
-      formData.append("text", textValue);
-      formData.append("type", "text");
-    } else {
-      const fileInput = document.getElementById("fileUpload");
-      formData.append("file", fileInput.files[0]);
-      formData.append("format", fileFormat);
-      formData.append("type", "file");
-    }
+    const fileInput = document.getElementById("fileUpload");
+    formData.append("file", fileInput.files[0]);
+    formData.append("format", fileFormat);
+    formData.append("type", "file");
 
     // axios.post("http://localhost:3000/pdf", formData, {
     //   headers: {
     //     "Content-Type": "multipart/form-data",
     //   },
     // })
-    // .then(response => {
-    //   console.log(response.data);
-    //   setFetchedData(response.data[0].conversations);
-    //   setAlertMessage("Extracted successfully!");
-    //   setTextValue("");  // Clear text
-    //   setFileName(null); // Clear file
-    // })
-    // .catch(error => {
-    //   setAlertMessage("Upload failed. Please try again.");
-    // })
-    // .finally(() => {
-    //   setLoading(false);
-    //   setShowLoader(false);
-    //   setShowAlert(true);
-    // });
+    //   .then(response => {
+    //     setAlertMessage("File uploaded successfully!");
+    //     setFileName(null); // Clear file
+    //   })
+    //   .catch(error => {
+    //     setAlertMessage("File upload failed. Please try again.");
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //     setShowLoader(false);
+    //     setShowAlert(true);
+    //   });
+  };
+  const handleSubmit = () => {
+    if (selectedTab === "text") {
+      handleTextSubmit();
+    } else if (selectedTab === "file") {
+      handleFileSubmit();
+    }
   };
 
   return (
     <ThemeProvider defaultTheme="light">
-      <div className={`min-h-screen bg-background text-foreground ${showLoader ? 'blurred' : ''}`}>
+      <div
+        className={`min-h-screen bg-background text-foreground ${
+          showLoader ? "blurred" : ""
+        }`}
+      >
         <nav className="p-4 bg-gray-800 text-white">
           <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 tracking-wide">Text-ract</h1>
+            <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 tracking-wide">
+              Text-ract
+            </h1>
             <ModeToggle />
           </div>
         </nav>
         <div className="flex items-center justify-center h-[calc(100vh-64px)] bg-gray-100 dark:bg-gray-900">
           <Card className="w-full max-w-xl shadow-lg">
             <CardHeader>
-              <CardTitle className="text-center text-xl font-semibold">Input Section</CardTitle>
+              <CardTitle className="text-center text-xl font-semibold">
+                Input Section
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <Tabs value={selectedTab} onValueChange={setSelectedTab} className="relative">
+              <Tabs
+                value={selectedTab}
+                onValueChange={setSelectedTab}
+                className="relative"
+              >
                 <TabsList className="flex w-full rounded-none relative">
                   <span
                     className="absolute bottom-0 left-0 h-1 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 z-20"
                     style={{
                       width: selectedTab === "text" ? "50%" : "50%",
-                      transform: selectedTab === "text" ? "translateX(0%)" : "translateX(100%)",
+                      transform:
+                        selectedTab === "text"
+                          ? "translateX(0%)"
+                          : "translateX(100%)",
                     }}
                   ></span>
                   <TabsTrigger
@@ -117,22 +177,27 @@ export default function App() {
                 </TabsList>
                 <TabsContent value="text">
                   <div className="mt-4">
-                    <Label htmlFor="largeTextInput" className="block mb-2">Enter Text</Label>
+                    <Label htmlFor="largeTextInput" className="block mb-2">
+                      Enter Text
+                    </Label>
                     <Textarea
                       id="largeTextInput"
                       value={textValue}
                       onChange={(e) => setTextValue(e.target.value)}
                       placeholder="Type or paste your text here..."
-                      rows={5} 
+                      rows={5}
                       className="w-full p-2 border border-gray-300 rounded"
                     />
                     <Button
-                      className={`mt-4 w-full ${loading ? 'bg-gray-500' : 'bg-gray-800'} text-white hover:bg-gray-950`}
+                      className={`mt-4 w-full ${
+                        loading ? "bg-gray-500" : "bg-gray-800"
+                      } text-white hover:bg-gray-950`}
                       onClick={handleSubmit}
                     >
                       {loading ? "Loading..." : "Submit"}
                     </Button>
                     <Csv data={fetchedData} />
+                    <Pdf data={fetchedData} />
                   </div>
                 </TabsContent>
                 <TabsContent value="file">
@@ -140,16 +205,24 @@ export default function App() {
                     <Label className="block mb-2">Select File Format</Label>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="w-full">{fileFormat.toUpperCase()}</Button>
+                        <Button variant="outline" className="w-full">
+                          {fileFormat.toUpperCase()}
+                        </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
-                        <DropdownMenuItem onClick={() => setFileFormat("pdf")}>PDF</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setFileFormat("txt")}>Text File</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setFileFormat("pdf")}>
+                          PDF
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setFileFormat("txt")}>
+                          Text File
+                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
                   <div className="mt-4">
-                    <Label htmlFor="fileUpload" className="block mb-2">Upload {fileFormat.toUpperCase()}</Label>
+                    <Label htmlFor="fileUpload" className="block mb-2">
+                      Upload {fileFormat.toUpperCase()}
+                    </Label>
                     <div className="relative">
                       <input
                         id="fileUpload"
@@ -169,10 +242,14 @@ export default function App() {
                       </Button>
                     </div>
                     {fileName && (
-                      <p className="mt-2 text-center text-gray-600 dark:text-gray-400">{fileName}</p>
+                      <p className="mt-2 text-center text-gray-600 dark:text-gray-400">
+                        {fileName}
+                      </p>
                     )}
                     <Button
-                      className={`mt-4 w-full ${loading ? 'bg-gray-500' : 'bg-gray-800'} text-white hover:bg-gray-950`}
+                      className={`mt-4 w-full ${
+                        loading ? "bg-gray-500" : "bg-gray-800"
+                      } text-white hover:bg-gray-950`}
                       onClick={handleSubmit}
                     >
                       {loading ? "Loading..." : "Upload"}
@@ -190,8 +267,12 @@ export default function App() {
                     {alertMessage}
                   </AlertDialogDescription>
                   <div className="flex gap-4 mt-4">
-                    <AlertDialogAction onClick={() => setShowAlert(false)}>OK</AlertDialogAction>
-                    <AlertDialogCancel onClick={() => setShowAlert(false)}>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => setShowAlert(false)}>
+                      OK
+                    </AlertDialogAction>
+                    <AlertDialogCancel onClick={() => setShowAlert(false)}>
+                      Cancel
+                    </AlertDialogCancel>
                   </div>
                 </AlertDialogContent>
               </AlertDialog>
