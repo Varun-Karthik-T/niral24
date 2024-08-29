@@ -109,29 +109,4 @@ Once both the backend and frontend servers are running, you can access the appli
 - **Download Options**: Export the extracted data in CSV or PDF formats.
 - **Data Visualization**: Utilize bar and pie charts to gain insights from the data.
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
-
-## Contributing
-
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more information on how to get involved.
-
-## Contact
-
-For any questions or feedback, please reach out to [your-email@example.com].
-
----
-
-Thank you for checking out the Car Sales Conversation Processor! We hope it enhances your car sales processes and improves customer satisfaction.
-```
-
-### Key Improvements Made:
-- **Title and Introduction**: Added a more engaging title and expanded the overview to highlight the project's purpose.
-- **Detailed Features**: Enhanced descriptions of features to clarify their benefits.
-- **Tech Stack Organization**: Clearly separated backend and frontend technologies for better readability.
-- **Getting Started Section**: Included prerequisites and a cloning step for better onboarding.
-- **Usage Instructions**: Clarified how to access and use the application.
-- **Contributing and Contact Sections**: Encouraged community involvement and provided a way to contact for support.
-
-This revised `README.md` should provide a comprehensive and engaging guide for users and contributors alike!
