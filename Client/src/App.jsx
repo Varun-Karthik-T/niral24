@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import d from "./data/data"; // Import the actual data
+import d from "./data/data";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -25,6 +25,7 @@ import {
 import axios from "axios";
 import Csv from "./components/csv";
 import Pdf from "./components/pdf";
+import ChartComponent from "./components/chart";
 
 export default function App() {
   const [selectedTab, setSelectedTab] = useState("text");
@@ -122,16 +123,14 @@ export default function App() {
     } else if (selectedTab === "file") {
       handleFileSubmit();
     }
-    setFetchedData(d.data); 
+    setFetchedData(d.data);
     setAlertMessage("Extracted successfully!");
-    setTextValue("");  // Clear text
+    setTextValue(""); // Clear text
     setFileName(null); // Clear file
     setLoading(false);
     setShowLoader(false);
-    setShowJsonDialog(true); 
-
+    setShowJsonDialog(true);
   };
-
 
   const formatJsonData = (data) => {
     if (!data) return "No data available";
@@ -146,24 +145,37 @@ export default function App() {
               <strong>Company Policies:</strong>
               <ul>
                 {Object.entries(conv.company_policies).map(([key, value]) => (
-                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                  <li key={key}>
+                    <strong>{key.replace(/_/g, " ")}:</strong>{" "}
+                    {value === null ? "Not found" : value.toString()}
+                  </li>
                 ))}
               </ul>
             </div>
             <div>
               <strong>Customer Objections:</strong>
               <ul>
-                {Object.entries(conv.customer_objections).map(([key, value]) => (
-                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
-                ))}
+                {Object.entries(conv.customer_objections).map(
+                  ([key, value]) => (
+                    <li key={key}>
+                      <strong>{key.replace(/_/g, " ")}:</strong>{" "}
+                      {value === null ? "Not found" : value.toString()}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
             <div>
               <strong>Customer Requirements:</strong>
               <ul>
-                {Object.entries(conv.customer_requirements).map(([key, value]) => (
-                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
-                ))}
+                {Object.entries(conv.customer_requirements).map(
+                  ([key, value]) => (
+                    <li key={key}>
+                      <strong>{key.replace(/_/g, " ")}:</strong>{" "}
+                      {value === null ? "Not found" : value.toString()}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -323,7 +335,10 @@ export default function App() {
                   </div>
                 </AlertDialogContent>
               </AlertDialog>
-              <AlertDialog open={showJsonDialog} onOpenChange={setShowJsonDialog}>
+              <AlertDialog
+                open={showJsonDialog}
+                onOpenChange={setShowJsonDialog}
+              >
                 <AlertDialogTrigger asChild>
                   <div />
                 </AlertDialogTrigger>
@@ -332,11 +347,17 @@ export default function App() {
                   <AlertDialogDescription>
                     <div className="overflow-auto max-h-96">
                       {formatJsonData(fetchedData)}
+                      <div className="h-[400px] flex gap-10 flex-col">
+
+                        <ChartComponent data={fetchedData} type="policies" />  
+                        <ChartComponent data={fetchedData} type="color" />
+                      </div>
                     </div>
-                    
                   </AlertDialogDescription>
                   <div className="flex gap-4 mt-4">
-                    <AlertDialogAction onClick={() => setShowJsonDialog(false)}>OK</AlertDialogAction>
+                    <AlertDialogAction onClick={() => setShowJsonDialog(false)}>
+                      OK
+                    </AlertDialogAction>
                     <Csv data={fetchedData} />
                     <Pdf data={fetchedData} />
                   </div>
