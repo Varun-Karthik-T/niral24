@@ -52,45 +52,52 @@ def run_ollama(prompt, model_name):
         print("No valid JSON found in the output.")
         return None
 
+def extract_info_from_pdf(file_path, model_name):
+    # Extract text from the PDF file
+    extracted_text = extract_text(file_path)
+
+    # Prepare the prompt by injecting the extracted text
+    prompt = f"""
+    Extract the following information from the provided text and return in JSON format:
+
+    1. Customer Requirements for a Car:
+        - Car Type (Hatchback, SUV, Sedan)
+        - Fuel Type
+        - Color
+        - Distance Travelled
+        - Make Year
+        - Transmission Type
+    2. Company Policies Discussed:
+        - Free RC Transfer
+        - 5-Day Money Back Guarantee
+        - Free RSA for One Year
+        - Return Policy
+    3. Customer Objections:
+        - Refurbishment Quality
+        - Car Issues
+        - Price Issues
+        - Customer Experience Issues (e.g., long wait time, salesperson behaviour)
+
+    Text: {extracted_text}
+    """
+
+    # Run the prompt through Ollama
+    response = run_ollama(prompt, model_name)
+    
+    return response
+
 # Example usage
-file_path = 'conv1.pdf'  # Replace with the actual file path
-model_name = 'llama3.1'  # Replace with the actual model name
-
-# Extract text from the file
-extracted_text = extract_text(file_path)
-
-# Prepare the prompt by injecting the extracted text
-prompt = f"""
-Extract the following information from the provided text and return in json format:
-
-1. Customer Requirements for a Car:
-    - Car Type (Hatchback, SUV, Sedan)
-    - Fuel Type
-    - Color
-    - Distance Travelled
-    - Make Year
-    - Transmission Type
-2. Company Policies Discussed:
-    - Free RC Transfer
-    - 5-Day Money Back Guarantee
-    - Free RSA for One Year
-    - Return Policy
-3. Customer Objections:
-    - Refurbishment Quality
-    - Car Issues
-    - Price Issues
-    - Customer Experience Issues (e.g., long wait time, salesperson behaviour)
-
-Text: {extracted_text}
-"""
-
-# Run the prompt through Ollama
-response = run_ollama(prompt, model_name)
-
-# Save the response as a JSON file
-if response:
-    with open('extracted_info.json', 'w') as json_file:
-        json.dump(response, json_file, indent=4)
-    print("Extracted information saved to extracted_info.json")
-else:
-    print("Failed to extract information.")
+if __name__ == "__main__":
+    file_path = 'conv1.pdf'  # Replace with the actual file path
+    model_name = 'llama3.1'  # Replace with the actual model name
+    
+    # Extract information
+    info = extract_info_from_pdf(file_path, model_name)
+    
+    # Save the response as a JSON file
+    if info:
+        with open('extracted_info.json', 'w') as json_file:
+            json.dump(info, json_file, indent=4)
+        print("Extracted information saved to extracted_info.json")
+    else:
+        print("Failed to extract information.")

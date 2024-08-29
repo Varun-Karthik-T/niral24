@@ -1,27 +1,37 @@
 {
-    "customer_requirements": {
-        "car_type": [
-            "Compact SUV"
+    "customerRequirements": {
+        "carType": [
+            "SUV"
         ],
-        "fuel_type": "Diesel",
-        "color": "White",
-        "distance_travelled": "",
-        "make_year": [
+        "fuelType": [
+            "diesel"
+        ],
+        "color": [],
+        "distanceTravelled": [],
+        "makeYear": [
             2017,
             2019
         ],
-        "transmission_type": "Manual or Automatic (no preference)"
+        "transmissionType": []
     },
-    "company_policies": {
-        "free_rc_transfer": true,
-        "five_day_money_back_guarantee": true,
-        "free_rsa_for_one_year": false,
-        "return_policy": "After five days, with registration process starting after that"
+    "companyPolicies": {
+        "freeRcTransfer": true,
+        "fiveDayMoneyBackGuarantee": true,
+        "freeRSAForOneYear": false,
+        "returnPolicy": true
     },
-    "customer_objections": [
-        "Refurbishment Quality",
-        "Car Issues",
-        "Price Issues",
-        "Customer Experience Issues (e.g., long wait time, salesperson behaviour)"
+    "customerObjections": [
+        {
+            "objection": "Refurbishment Quality"
+        },
+        {
+            "objection": "Car Issues"
+        },
+        {
+            "objection": "Price Issues"
+        },
+        {
+            "objection": "Customer Experience Issues (e.g., long wait time, salesperson behaviour)"
+        }
     ]
 }
