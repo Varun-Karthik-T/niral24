@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import d from "./data/data";
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -36,8 +36,8 @@ export default function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showLoader, setShowLoader] = useState(false);
-  const [fetchedData, setFetchedData] = useState(d.data);
-  console.log(d.data);
+  const [fetchedData, setFetchedData] = useState([]);
+  
   const [showJsonDialog, setShowJsonDialog] = useState(false);
 
   const handleFileChange = (event) => {
@@ -47,51 +47,56 @@ export default function App() {
     }
   };
 
-  const handleTextSubmit = () => {
+  function handleTextSubmit() {
     if (textValue.trim() === "") {
       alert("Please enter some text.");
       return;
     }
 
-    // setLoading(true);
-    // setShowLoader(true);
 
-    // const payload = {
-    //   text: textValue,
-    //   type: "text",
-    // };
 
-    // fetch("http://localhost:3000/text", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(payload),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setAlertMessage("Text processed successfully!");
-    //     setTextValue(""); // Clear text
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //     setAlertMessage("Processing failed. Please try again.");
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //     setShowLoader(false);
-    //     setShowAlert(true);
-    //   });
+    const payload = {
+      text: textValue,
+      type: "text",
+    };
+
+    fetch("http://localhost:3000/text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        
+        setFetchedData(data.data);
+        setAlertMessage("Text processed successfully!");
+        setTextValue(""); 
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setAlertMessage("Processing failed. Please try again.");
+      })
+      .finally(() => {
+        setAlertMessage("Extracted successfully!");
+        setTextValue(""); 
+        setFileName(null); 
+        setLoading(false);
+        setShowLoader(false);
+        setShowJsonDialog(true);
+      });
   };
-  const handleFileSubmit = () => {
+
+
+  function handleFileSubmit () {
     if (!fileName) {
       alert("Please select a file to upload.");
       return;
     }
 
-    setLoading(true);
-    setShowLoader(true);
+    
 
     const formData = new FormData();
     const fileInput = document.getElementById("fileUpload");
@@ -99,37 +104,37 @@ export default function App() {
     formData.append("format", fileFormat);
     formData.append("type", "file");
 
-    // axios.post("http://localhost:3000/pdf", formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
-    //   .then(response => {
-    //     setAlertMessage("File uploaded successfully!");
-    //     setFileName(null); // Clear file
-    //   })
-    //   .catch(error => {
-    //     setAlertMessage("File upload failed. Please try again.");
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //     setShowLoader(false);
-    //     setShowAlert(true);
-    //   });
+    axios.post("http://localhost:3000/pdf", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(response => {
+        setAlertMessage("File uploaded successfully!");
+        setFileName(null);
+        setFetchedData(response.data);
+      })
+      .catch(error => {
+        setAlertMessage("File upload failed. Please try again.");
+      })
+      .finally(() => {
+        setAlertMessage("Extracted successfully!");
+        setTextValue(""); 
+        setFileName(null); 
+        setLoading(false);
+        setShowLoader(false);
+        setShowJsonDialog(true);
+      });
   };
   const handleSubmit = () => {
+    setLoading(true);
+    setShowLoader(true);
     if (selectedTab === "text") {
       handleTextSubmit();
     } else if (selectedTab === "file") {
       handleFileSubmit();
     }
-    setFetchedData(d.data);
-    setAlertMessage("Extracted successfully!");
-    setTextValue(""); // Clear text
-    setFileName(null); // Clear file
-    setLoading(false);
-    setShowLoader(false);
-    setShowJsonDialog(true);
+
   };
 
   const formatJsonData = (data) => {

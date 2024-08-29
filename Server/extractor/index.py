@@ -30,18 +30,16 @@ def run_ollama(prompt, model_name, retries=3):
             result = subprocess.run(command, input=prompt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=240)
         except subprocess.TimeoutExpired:
             print(f"Ollama command timed out on attempt {attempt + 1}. Retrying...")
-            time.sleep(5)  # Wait before retrying
+            time.sleep(5)
             continue
         
         if result.returncode != 0:
             print(f"Error running Ollama on attempt {attempt + 1}: {result.stderr}")
             return None
 
-        # Print the raw output for debugging
         print(f"Raw output from Ollama (attempt {attempt + 1}):")
         print(result.stdout)
 
-        # Extract JSON from the raw output
         raw_output = result.stdout.strip()
         
         json_start = raw_output.find('{')
@@ -60,8 +58,8 @@ def run_ollama(prompt, model_name, retries=3):
     
     print("Failed to get valid JSON from Ollama after multiple attempts.")
     return None
+
 def extract_info_from_text(input_text, model_name):
-    # Assuming the conversations in the text are separated by '##'
     conversations = input_text.split('##')
     results = []
     length = len(conversations)

@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS 
-from extractor.index import extract_info_from_file  # Ensure this import is correct
+from extractor.index import extract_info_from_file
+from extractor.index import extract_info_from_text  
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -29,6 +30,8 @@ def upload_file():
         return jsonify({"message": "File received successfully", "data": result}), 200
     
     return jsonify({"error": "Invalid file type, only PDF or TXT allowed"}), 400
+
+
 @app.route("/text", methods=["POST"])
 def process_text():
     print("Text request received")
