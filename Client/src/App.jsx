@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import d from "./data/data";
+import d from "./data/data"; // Import the actual data
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -37,6 +37,7 @@ export default function App() {
   const [showLoader, setShowLoader] = useState(false);
   const [fetchedData, setFetchedData] = useState(d.data);
   console.log(d.data);
+  const [showJsonDialog, setShowJsonDialog] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
@@ -273,6 +274,22 @@ export default function App() {
                     <AlertDialogCancel onClick={() => setShowAlert(false)}>
                       Cancel
                     </AlertDialogCancel>
+                  </div>
+                </AlertDialogContent>
+              </AlertDialog>
+              <AlertDialog open={showJsonDialog} onOpenChange={setShowJsonDialog}>
+                <AlertDialogTrigger asChild>
+                  <div />
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogTitle>Fetched Data</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <div className="overflow-auto max-h-96">
+                      {formatJsonData(fetchedData)}
+                    </div>
+                  </AlertDialogDescription>
+                  <div className="flex gap-4 mt-4">
+                    <AlertDialogAction onClick={() => setShowJsonDialog(false)}>OK</AlertDialogAction>
                   </div>
                 </AlertDialogContent>
               </AlertDialog>
