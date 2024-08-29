@@ -1,9 +1,10 @@
-# server.py
-
 from flask import Flask, request, jsonify
 from extractor.index import extract_info_from_pdf
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 @app.route("/")
 def hello_world():
@@ -29,4 +30,4 @@ def upload_pdf():
     return jsonify({"error": "Invalid file type, only PDF allowed"}), 400
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0',port=3000)
+    app.run(host='0.0.0.0',port=3000)
