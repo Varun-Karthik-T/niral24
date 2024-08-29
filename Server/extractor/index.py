@@ -1,3 +1,5 @@
+# extractor/index.py
+
 import os
 import pdfplumber
 import subprocess
@@ -6,7 +8,7 @@ import json
 def extract_text(file_path):
     ext = os.path.splitext(file_path)[1].lower()
     text = ''
-    
+    print("Extracting text from file")
     if ext == '.txt':
         with open(file_path, 'r') as file:
             text = file.read()
@@ -20,9 +22,8 @@ def extract_text(file_path):
     return text
 
 def run_ollama(prompt, model_name):
-    # Construct the command to run the Ollama model with the correct model name
     command = ['ollama', 'run', model_name]
-
+    print("running llama")
     # Execute the command and pass the prompt via stdin
     result = subprocess.run(command, input=prompt, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
