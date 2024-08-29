@@ -4,13 +4,12 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import d from "./data/data";
+import d from "./data/data"; // Import the actual data
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
 import axios from "axios";
-import Csv from './components/csv';
 
 export default function App() {
   const [selectedTab, setSelectedTab] = useState("text");
@@ -21,9 +20,9 @@ export default function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showLoader, setShowLoader] = useState(false);
-  const [fetchedData, setFetchedData] = useState(d.data);
-  console.log(d.data);
-  
+  const [showJsonDialog, setShowJsonDialog] = useState(false);
+  const [fetchedData, setFetchedData] = useState(d.data); // Use the actual data
+
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -56,26 +55,76 @@ export default function App() {
       formData.append("type", "file");
     }
 
-    // axios.post("http://localhost:3000/pdf", formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
-    // .then(response => {
-    //   console.log(response.data);
-    //   setFetchedData(response.data[0].conversations);
-    //   setAlertMessage("Extracted successfully!");
-    //   setTextValue("");  // Clear text
-    //   setFileName(null); // Clear file
-    // })
-    // .catch(error => {
-    //   setAlertMessage("Upload failed. Please try again.");
-    // })
-    // .finally(() => {
-    //   setLoading(false);
-    //   setShowLoader(false);
-    //   setShowAlert(true);
-    // });
+    /* Uncomment and configure axios for actual server request
+    axios.post("http://localhost:3000/pdf", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(response => {
+      setFetchedData(response.data);
+      setAlertMessage("Extracted successfully!");
+      setTextValue("");  // Clear text
+      setFileName(null); // Clear file
+      setShowJsonDialog(true); // Show the JSON data dialog
+    })
+    .catch(error => {
+      setAlertMessage("Upload failed. Please try again.");
+    })
+    .finally(() => {
+      setLoading(false);
+      setShowLoader(false);
+      setShowAlert(true);
+    });
+    */
+    
+    // Mock response for UI testing
+    setFetchedData(d.data); 
+    setAlertMessage("Extracted successfully!");
+    setTextValue("");  // Clear text
+    setFileName(null); // Clear file
+    setLoading(false);
+    setShowLoader(false);
+    setShowJsonDialog(true); // Show the JSON data dialog
+  };
+
+  const formatJsonData = (data) => {
+    if (!data) return "No data available";
+
+    return data.map((item, index) => (
+      <div key={index} className="mb-4">
+        <h3 className="font-semibold text-lg">Conversation {index + 1}</h3>
+        {item.conversations.map((conv, idx) => (
+          <div key={idx} className="p-2 border border-gray-300 rounded mb-2">
+            <h4 className="font-medium">Conversation {idx + 1}</h4>
+            <div>
+              <strong>Company Policies:</strong>
+              <ul>
+                {Object.entries(conv.company_policies).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>Customer Objections:</strong>
+              <ul>
+                {Object.entries(conv.customer_objections).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>Customer Requirements:</strong>
+              <ul>
+                {Object.entries(conv.customer_requirements).map(([key, value]) => (
+                  <li key={key}><strong>{key.replace(/_/g, ' ')}:</strong> {value === null ? "Not found" : value.toString()}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    ));
   };
 
   return (
@@ -132,7 +181,6 @@ export default function App() {
                     >
                       {loading ? "Loading..." : "Submit"}
                     </Button>
-                    <Csv data={fetchedData} />
                   </div>
                 </TabsContent>
                 <TabsContent value="file">
@@ -192,6 +240,22 @@ export default function App() {
                   <div className="flex gap-4 mt-4">
                     <AlertDialogAction onClick={() => setShowAlert(false)}>OK</AlertDialogAction>
                     <AlertDialogCancel onClick={() => setShowAlert(false)}>Cancel</AlertDialogCancel>
+                  </div>
+                </AlertDialogContent>
+              </AlertDialog>
+              <AlertDialog open={showJsonDialog} onOpenChange={setShowJsonDialog}>
+                <AlertDialogTrigger asChild>
+                  <div />
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogTitle>Fetched Data</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <div className="overflow-auto max-h-96">
+                      {formatJsonData(fetchedData)}
+                    </div>
+                  </AlertDialogDescription>
+                  <div className="flex gap-4 mt-4">
+                    <AlertDialogAction onClick={() => setShowJsonDialog(false)}>OK</AlertDialogAction>
                   </div>
                 </AlertDialogContent>
               </AlertDialog>
