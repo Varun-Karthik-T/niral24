@@ -11,6 +11,7 @@ The **Car Sales Conversation Processor** is a powerful tool designed to analyze 
   - Direct text input for quick analysis.
   - Upload `.txt` files for batch processing.
   - Extract text from `.pdf` files for comprehensive analysis.
+  -  **Supports bulk upload**
 
 - **Data Extraction**:
   - Automatically extract customer requirements, company policies, and objections.
