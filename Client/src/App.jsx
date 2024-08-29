@@ -20,8 +20,8 @@ export default function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showLoader, setShowLoader] = useState(false);
-  const [fetchedData, setFetchedData] = useState([]);
-  console.log(d);
+  const [fetchedData, setFetchedData] = useState(d.data[0].conversations);
+  
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
     if (file) {
