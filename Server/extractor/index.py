@@ -60,6 +60,78 @@ def run_ollama(prompt, model_name, retries=3):
     
     print("Failed to get valid JSON from Ollama after multiple attempts.")
     return None
+def extract_info_from_text(input_text, model_name):
+    # Assuming the conversations in the text are separated by '##'
+    conversations = input_text.split('##')
+    results = []
+    length = len(conversations)
+    counter = 0
+    print(length, "conversations found")
+
+    for conversation in conversations:
+        conversation = conversation.strip()
+        if conversation:
+            prompt = f"""
+            Extract the following information from the provided text and return it in JSON format:
+
+            1. Customer Requirements for a Car:
+                - Car Type (Hatchback, SUV, Sedan)
+                - Fuel Type
+                - Color
+                - Distance Travelled
+                - Make Year
+                - Transmission Type
+            2. Company Policies Discussed:
+                - Free RC Transfer
+                - 5-Day Money Back Guarantee
+                - Free RSA for One Year
+                - Return Policy
+            3. Customer Objections:
+                - Refurbishment Quality
+                - Car Issues
+                - Price Issues
+                - Customer Experience Issues (e.g., long wait time, salesperson behaviour)
+
+            Text: {conversation}
+
+            Output format:
+            {{
+                "conversations": [
+                    {{
+                        "customer_requirements": {{
+                            "car_type": "",
+                            "fuel_type": "",
+                            "color": "",
+                            "distance_travelled": "",
+                            "make_year": "",
+                            "transmission_type": ""
+                        }},
+                        "company_policies": {{
+                            "free_rc_transfer": false,
+                            "five_day_money_back_guarantee": false,
+                            "free_rsa_for_one_year": false,
+                            "return_policy": ""
+                        }},
+                        "customer_objections": {{
+                            "refurbishment_quality": "",
+                            "car_issues": "",
+                            "price_issues": "",
+                            "customer_experience_issues": ""
+                        }}
+                    }}
+                ]
+            }}
+            """
+            response = run_ollama(prompt, model_name)
+            if response:
+                results.append(response)
+                counter += 1
+                print(f"Conversation {counter} processed, {length - counter} remaining")
+            else:
+                results.append({"error": "Failed to extract information from one conversation"})
+
+    return results
+
 
 def extract_info_from_file(file_path, model_name):
     extracted_text = extract_text(file_path)
