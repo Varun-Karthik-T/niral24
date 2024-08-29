@@ -61,6 +61,7 @@ export default function App() {
     })
     .then(response => {
       console.log(response.data);
+      setFetchedData(response.data[0].conversations);
       setAlertMessage("Extracted successfully!");
       setTextValue("");  // Clear text
       setFileName(null); // Clear file
