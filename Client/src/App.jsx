@@ -4,6 +4,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import d from "./data/data";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -19,7 +20,8 @@ export default function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showLoader, setShowLoader] = useState(false);
-
+  const [fetchedData, setFetchedData] = useState([]);
+  console.log(d);
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -58,6 +60,7 @@ export default function App() {
       },
     })
     .then(response => {
+      console.log(response.data);
       setAlertMessage("Extracted successfully!");
       setTextValue("");  // Clear text
       setFileName(null); // Clear file
