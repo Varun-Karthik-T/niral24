@@ -1,0 +1,37 @@
+{
+    "customerRequirements": {
+        "carType": [
+            "SUV"
+        ],
+        "fuelType": [
+            "diesel"
+        ],
+        "color": [],
+        "distanceTravelled": [],
+        "makeYear": [
+            2017,
+            2019
+        ],
+        "transmissionType": []
+    },
+    "companyPolicies": {
+        "freeRcTransfer": true,
+        "fiveDayMoneyBackGuarantee": true,
+        "freeRSAForOneYear": false,
+        "returnPolicy": true
+    },
+    "customerObjections": [
+        {
+            "objection": "Refurbishment Quality"
+        },
+        {
+            "objection": "Car Issues"
+        },
+        {
+            "objection": "Price Issues"
+        },
+        {
+            "objection": "Customer Experience Issues (e.g., long wait time, salesperson behaviour)"
+        }
+    ]
+}
