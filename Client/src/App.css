@@ -1,0 +1,42 @@
+@keyframes fillAnimation {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  .animate-fill {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .animate-fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #333; /* Gray-800 */
+    width: 100%;
+    animation: fillAnimation 4s linear forwards;
+  }
+  
+  .blurred {
+    filter: blur(4px);
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
