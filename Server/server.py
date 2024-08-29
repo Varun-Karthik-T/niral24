@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS 
 from extractor.index import extract_info_from_file  # Ensure this import is correct
 
 app = Flask(__name__)

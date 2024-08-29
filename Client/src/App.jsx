@@ -39,7 +39,7 @@ export default function App() {
     }
 
     setLoading(true);
-    setShowLoader(true);
+    setShowLoader(true); 
 
     const formData = new FormData();
     if (selectedTab === "text") {
@@ -52,13 +52,13 @@ export default function App() {
       formData.append("type", "file");
     }
 
-    axios.post("http://localhost:3000/upload", formData, {
+    axios.post("http://localhost:3000/pdf", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
     .then(response => {
-      setAlertMessage("Upload successful!");
+      setAlertMessage("Extracted successfully!");
       setTextValue("");  // Clear text
       setFileName(null); // Clear file
     })

@@ -125,6 +125,7 @@ def extract_info_from_file(file_path, model_name):
             response = run_ollama(prompt, model_name)
             if response:
                 results.append(response)
+                counter+=1
                 print("Conversation ",counter," processed    ",length-counter," remaining")
 
             else:
