@@ -1,37 +1,80 @@
-{
-    "customerRequirements": {
-        "carType": [
-            "SUV"
-        ],
-        "fuelType": [
-            "diesel"
-        ],
-        "color": [],
-        "distanceTravelled": [],
-        "makeYear": [
-            2017,
-            2019
-        ],
-        "transmissionType": []
+[
+    {
+        "conversations": [
+            {
+                "customer_requirements": {
+                    "car_type": "compact SUV",
+                    "fuel_type": "diesel",
+                    "color": "",
+                    "distance_travelled": "",
+                    "make_year": "2017 or newer",
+                    "transmission_type": ""
+                },
+                "company_policies": {
+                    "free_rc_transfer": false,
+                    "five_day_money_back_guarantee": true,
+                    "free_rsa_for_one_year": true,
+                    "return_policy": ""
+                },
+                "customer_objections": {
+                    "refurbishment_quality": "",
+                    "car_issues": "hidden problems",
+                    "price_issues": "budget of Rs. 800,000",
+                    "customer_experience_issues": "long wait time, salesperson behavior"
+                }
+            }
+        ]
     },
-    "companyPolicies": {
-        "freeRcTransfer": true,
-        "fiveDayMoneyBackGuarantee": true,
-        "freeRSAForOneYear": false,
-        "returnPolicy": true
+    {
+        "conversations": [
+            {
+                "customer_requirements": {
+                    "car_type": "Sedan",
+                    "fuel_type": "",
+                    "color": "",
+                    "distance_travelled": "",
+                    "make_year": ">2014",
+                    "transmission_type": ""
+                },
+                "company_policies": {
+                    "free_rc_transfer": true,
+                    "five_day_money_back_guarantee": true,
+                    "free_rsa_for_one_year": false,
+                    "return_policy": ""
+                },
+                "customer_objections": {
+                    "refurbishment_quality": "scratches and paint job",
+                    "car_issues": "",
+                    "price_issues": "Rs. 6,97,000",
+                    "customer_experience_issues": ""
+                }
+            }
+        ]
     },
-    "customerObjections": [
-        {
-            "objection": "Refurbishment Quality"
-        },
-        {
-            "objection": "Car Issues"
-        },
-        {
-            "objection": "Price Issues"
-        },
-        {
-            "objection": "Customer Experience Issues (e.g., long wait time, salesperson behaviour)"
-        }
-    ]
-}
+    {
+        "conversations": [
+            {
+                "customer_requirements": {
+                    "car_type": "",
+                    "fuel_type": "Petrol",
+                    "color": "",
+                    "distance_travelled": "",
+                    "make_year": "2017 or 2014 (already owned)",
+                    "transmission_type": ""
+                },
+                "company_policies": {
+                    "free_rc_transfer": true,
+                    "five_day_money_back_guarantee": true,
+                    "free_rsa_for_one_year": true,
+                    "return_policy": "within 5 days or 300 Km for a full cash refund"
+                },
+                "customer_objections": {
+                    "refurbishment_quality": "paint job seems a bit off, and there are some scratches",
+                    "car_issues": "",
+                    "price_issues": "unsure about the vehicle price",
+                    "customer_experience_issues": "long wait time, salesperson behaviour (implied)"
+                }
+            }
+        ]
+    }
+]

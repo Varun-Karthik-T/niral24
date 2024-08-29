@@ -1,0 +1,185 @@
+Salesperson: We have a few options in terms of colors, sir. What color are you interested in? So far we've got only blue and white.  
+Customer: Okay, white is okay. No special preference, and what about the budget? How much can you offer for that? No details mentioned.  
+Salesperson: Yes, let me confirm. The starting price is around Rs. 10,50,000. That’s for the 2021 model, diesel SUV.  
+Customer: The car without any label? You remove the labels for the sold ones, or what?  
+Salesperson: Correct, sir. Sold cars don’t usually have labels on them.  
+Customer: Right, so my requirement is...  
+Salesperson: Sure, sir. What are you looking for?  
+Customer: I have a budget of about Rs. 800,000, and I'm really looking for something spacious and safe, safety first. Maybe a compact SUV, yes, compact SUV. And maybe like a Mahindra XUV or something similar.  
+Salesperson: I understand, sir. We can certainly find a suitable vehicle for that. What about fuel type?  
+Customer: No petrol, please. Diesel only.  
+Salesperson: Manual or automatic transmission preferences, sir?  
+Customer: I don’t, I don’t mind, whatever is best for my budget.  
+Salesperson: Okay, understood, sir. We have both options in our inventory. Regarding safety, our vehicles are well maintained and undergo a thorough checkup.  
+Customer: How do you ensure they are safe?  
+Salesperson: We conduct a comprehensive 200-point inspection before purchasing any vehicle. So, if you like it, it's definitely safe to purchase.  
+Customer: But how can I trust that it's always maintained well? There might be hidden problems.  
+Salesperson: No, sir, we get detailed service history of each vehicle. Plus, non-accidental, no meter tampering, and all that.  
+Customer: So what support do I get after I buy? I mean, like warranty?  
+Salesperson: Yes, of course. We offer a warranty on the engine and gearbox for one year or 15,000 kilometers. And a warranty on AC and electricals for three months or 5,000 kilometers.  
+Customer: Wait, so the warranty is just three months for that?  
+Salesperson: Correct, just three months, yes.  
+Customer: So if something goes wrong after three months?  
+Salesperson: We also have a five-day money-back guarantee. If you aren’t satisfied, you can return the car.  
+Customer: Within five days, like? But what about the registration?  
+Salesperson: The registration process only starts after five days, yes.  
+Customer: So, till then? What’s the process for ownership during that time?  
+Salesperson: You won't be the registered owner until we start the process.  
+Customer: Will I get a confirmation before that?  
+Salesperson: Yes, a confirmation will be sent once the process begins.  
+Customer: Great. So can you now, um, check if we have SUVs that fit my requirements?  
+Salesperson: Absolutely, let me find options in SUVs within that range.  
+Customer: I want to avoid small ones, you know? Like, the tiny models.  
+Salesperson: Sure, no hatchbacks then. So you prefer compact SUVs?  
+Customer: Yes, I don’t like hatchbacks at all. Something spacious. Like, what about, maybe, a Creta?  
+Salesperson: We actually have Creta available, let me check... Yes, it’s a 2019 model with good history.  
+Customer: How much does the Creta cost?  
+Salesperson: It’s priced around Rs. 9,50,000. Just over your budget a bit.  
+Customer: If I need to go lower, what do you suggest?  
+Salesperson: We can look at vehicles from 2017. Mileage would be higher, but still in decent condition.  
+Customer: Okay, okay, if I wanted to consider really low mileage, would that be within budget?  
+Salesperson: Yes, slightly older models could potentially fit within your budget, sir.  
+Customer: Like, uh, if the mileage is higher, does that affect the resale value later on?  
+Salesperson: Definitely, mileage can impact the resale value.  
+Customer: Okay, I see. So what's the driveable life of these models?  
+Salesperson: You can expect around 2 lakh kilometers if maintained well.  
+Customer: Okay. What about test drives? Can I take one?  
+Salesperson: You have to, please, come into the showroom for a test drive, or we can organize a home test drive for you.  
+Customer: Okay, I may want a home test drive, but when can I schedule that?  
+Salesperson: Availability varies, may take a couple of days. But we can arrange soon.  
+Customer: Okay then. Thanks for your help!  
+Salesperson: My pleasure, sir
+##
+Salesperson: Good afternoon, sir. How can I assist you today?
+Customer: Good afternoon. I'm looking for a car within a budget of Rs. 600,000. My primary concerns are safety and proper maintenance. I don't have any specific preference for the vehicle size or type.
+Salesperson: Understood, sir. We have a variety of options that might suit your needs. Are you looking for an automatic or manual transmission?
+Customer: I don't have a preference for that either. Just show me what fits my budget and requirements.
+Salesperson: Certainly, sir. We ensure that all our vehicles undergo a thorough 200-point inspection to guarantee they are non-accidental, non-meter tampered, and have a complete service history. This way, you can be assured of the vehicle's condition.
+Customer: That's good to know. What kind of warranty do you offer after purchase?
+Salesperson: Once you purchase a vehicle, you will have a one-year or 15,000 kilometers warranty on the engine and gearbox. Additionally, for three months or 5,000 kilometers, we cover the AC, electrical, and fuel systems. We also offer a five-day money-back guarantee if you are not satisfied with the vehicle.
+Customer: That sounds reassuring. So, what options do you have in my budget?
+Salesperson: Let me show you a few options. We have both budget and assured categories. The budget vehicles might have higher mileage and more owners, while the assured ones are well-maintained and in showroom condition. 
+Customer: I see. Can you show me a sedan? I prefer something at least the size of a Fabia.
+Salesperson: Absolutely, sir. Here is a 2015 Honda City. It's a well-maintained sedan with 1,20,000 kilometers on it. 
+Customer: How much is it?
+Salesperson: This one is priced at Rs. 6,97,000. However, I must mention that it has a few minor scratches and the paint job isn't perfect. But mechanically, it's in excellent condition.
+Customer: Hmm, the scratches and paint job are a bit concerning. Do you have anything else?
+Salesperson: We also have a 2014 Maruti Suzuki Ciaz. It's slightly older but has fewer kilometers on it. The paint and exterior are in better condition compared to the Honda City.
+Customer: What about the engine and overall maintenance?
+Salesperson: Both vehicles have been thoroughly inspected and are in good mechanical condition. The Ciaz has a quieter engine and a cleaner interior.
+Customer: That's good to hear. What about the resale value after three years?
+Salesperson: For assured vehicles, we offer a buy-back guarantee. For example, if you choose the Honda City, after one year, we will buy it back for Rs. 5,00,000, after two years for Rs. 4,32,000, and after three years for Rs. 4,00,000. This is subject to the vehicle not exceeding 10,000 kilometers per year and being serviced at authorized centers.
+Customer: That sounds fair. Can I take a test drive?
+Salesperson: Of course, sir. You can either come to our showroom or book a home test drive. The home test drive slots are available within one or two days.
+Customer: I live about five kilometers from here. Can we arrange a home test drive?
+Salesperson: Certainly, sir. I will book a slot for you. You will receive a confirmation shortly.
+Customer: Thank you. I appreciate your help.
+Salesperson: My pleasure, sir. If you have any other questions or need further assistance, feel free to contact us. Have a great day!
+Customer: Thank you. Goodbye.
+Salesperson: Goodbye, sir.
+##
+```
+Salesperson: Welcome! Let me show you our selection. This is the I-20 model. Are you planning to pay in cash or take a loan?
+
+Customer: I'm looking for a loan.
+
+Salesperson: Great. What do you do for a living? Do you have a regular salary?
+
+Customer: I work in agriculture.
+
+Salesperson: Do you have an Income Tax Return (ITR)?
+
+Customer: No, I don't.
+
+Salesperson: Do you own any land or agricultural property?
+
+Customer: No, I have a loan. This is Bangalore, right?
+
+Salesperson: Yes, it is. Do you have any outstanding loans to pay off?
+
+Customer: Yes, I do.
+
+Salesperson: Do you have a specific budget in mind?
+
+Customer: Yes, I do.
+
+Salesperson: Could you share your mobile number, please?
+
+Customer: It's 1851595.
+
+Salesperson: And your name?
+
+Customer: I'm looking for a petrol vehicle.
+
+Salesperson: Sure, but may I have your name?
+
+Customer: Manoj, Do you have vehicles for daily use?
+
+Salesperson: Yes, we do.
+
+Customer: I have two vehicles already. One is from 2017 and the other from 2014.
+
+Salesperson: This one here is priced at 5,39,000 rupees, and that one is 5,24,000 rupees. Both are West Bengal registered.
+
+Customer: WB registration?
+
+Salesperson: Yes, but we can include Karnataka registration at the same price. However, for diesel vehicles, you might not find many options. You could consider petrol vehicles like the I-10 or Eon.
+
+Customer: The I-10 is too small.
+
+Salesperson: In that case, you might want to look at the Alto. With a budget of 3.5 lakhs, you won't find a Venue or I-20.
+
+Customer: What about petrol options?
+
+Salesperson: The Venue starts from 9 lakhs.
+
+Customer: What?
+
+Salesperson: Yes, the Venue starts from 9 lakhs. The I-20 starts from 5 lakhs minimum. You can consider it.
+
+Customer: What are the benefits?
+
+Salesperson: The engine and gearbox come with a one-year guarantee. Please have a seat. We ensure the vehicle has passed 200 checkpoints, and the RC transfer and one-year insurance are included. If you're not satisfied, you can return the vehicle within 5 days or 300 Km for a full cash refund.
+
+Customer: How much is the vehicle price?
+
+Salesperson: We have diesel options available. What do you think about this vehicle?
+
+Customer: It looks okay, but what about the warranty?
+
+Salesperson: The warranty is for one year. If not, the engine and gearbox are covered for 100,000 Km.
+
+Customer: What about the Swift diesel?
+
+Salesperson: It's available for 100,000 Km. It's a 2011 model with 1,22,000 Km on it.
+
+Customer: And the second one?
+
+Salesperson: That one has 3,21,000 Km on it.
+
+Customer: What about the Tiago?
+
+Salesperson: The Tiago has 16,000 Km on it. It's white, a Tata Tiago, with 86,000 Km. It's a diesel and comes at a fixed price with no negotiation. The warranty covers 10,000 Km, and it's already serviced with an oil change. The name transfer will be done to your home address, and we'll provide you with the agreement.
+
+Customer: Where are you from?
+
+Salesperson: I'm from Mangalore. This is a 2010 model, diesel, priced at Rs. 340,000. The petrol version costs Rs. 662,000. The starting model is Rs. 662,000. How much does a new one cost?
+
+Customer: Around Rs. 12,000.
+
+Salesperson: The new one costs Rs. 18,000. You can take a test drive of the vehicle you like.
+
+Customer: Can I see the car?
+
+Salesperson: Absolutely. Here it is.
+
+Customer: Hmm, the paint job seems a bit off, and there are some scratches. Also, the interior isn't very clean.
+
+Salesperson: I apologize for that. We can have the paint job touched up and the interior thoroughly cleaned before delivery. Would that be acceptable?
+
+Customer: That sounds better. I'll think about it.
+
+Salesperson: Sure, take your time. If you decide to book today, just let us know. We can finalize everything for you.
+
+Customer: Alright, I'll get back to you soon.
+```

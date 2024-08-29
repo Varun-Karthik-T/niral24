@@ -1,5 +1,3 @@
-# server.py
-
 from flask import Flask, request, jsonify
 from extractor.index import extract_info_from_pdf
 
@@ -20,13 +18,17 @@ def upload_pdf():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
     
-    if file and file.filename.endswith('.pdf'):
-        file.save(f"./uploads/temp.pdf")
-        result = extract_info_from_pdf("./uploads/temp.pdf", "llama3.1")
+    # Check for valid file types (PDF or TXT)
+    if file and (file.filename.endswith('.pdf') or file.filename.endswith('.txt')):
+        file_path = f"./uploads/temp{file.filename}"
+        file.save(file_path)
         
-        return jsonify({"message": "PDF received successfully", "data": result}), 200
+        # Update the function to handle both PDF and TXT files
+        result = extract_info_from_pdf(file_path, "llama3.1")
+        
+        return jsonify({"message": "File received successfully", "data": result}), 200
     
-    return jsonify({"error": "Invalid file type, only PDF allowed"}), 400
+    return jsonify({"error": "Invalid file type, only PDF or TXT allowed"}), 400
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=3000)
