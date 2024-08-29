@@ -1,5 +1,6 @@
 # Car Sales Conversation Processor
 
+ Video Link : https://drive.google.com/file/d/1Plw9KIpGmy0v9fsBTi7i-IF6jBqxmO6I/view?usp=sharing
 ## Overview
 
 The **Car Sales Conversation Processor** is a powerful tool designed to analyze car sales conversation transcripts. It intelligently extracts essential information such as customer requirements, company policies discussed, and customer objections, all without the need for extensive training data. This project is ideal for sales teams looking to streamline their processes and improve customer interactions.
