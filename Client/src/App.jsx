@@ -10,6 +10,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
 import axios from "axios";
+import Csv from './components/csv';
 
 export default function App() {
   const [selectedTab, setSelectedTab] = useState("text");
@@ -20,7 +21,8 @@ export default function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showLoader, setShowLoader] = useState(false);
-  const [fetchedData, setFetchedData] = useState(d.data[0].conversations);
+  const [fetchedData, setFetchedData] = useState(d.data);
+  console.log(d.data);
   
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
@@ -54,26 +56,26 @@ export default function App() {
       formData.append("type", "file");
     }
 
-    axios.post("http://localhost:3000/pdf", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then(response => {
-      console.log(response.data);
-      setFetchedData(response.data[0].conversations);
-      setAlertMessage("Extracted successfully!");
-      setTextValue("");  // Clear text
-      setFileName(null); // Clear file
-    })
-    .catch(error => {
-      setAlertMessage("Upload failed. Please try again.");
-    })
-    .finally(() => {
-      setLoading(false);
-      setShowLoader(false);
-      setShowAlert(true);
-    });
+    // axios.post("http://localhost:3000/pdf", formData, {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // })
+    // .then(response => {
+    //   console.log(response.data);
+    //   setFetchedData(response.data[0].conversations);
+    //   setAlertMessage("Extracted successfully!");
+    //   setTextValue("");  // Clear text
+    //   setFileName(null); // Clear file
+    // })
+    // .catch(error => {
+    //   setAlertMessage("Upload failed. Please try again.");
+    // })
+    // .finally(() => {
+    //   setLoading(false);
+    //   setShowLoader(false);
+    //   setShowAlert(true);
+    // });
   };
 
   return (
@@ -127,6 +129,7 @@ export default function App() {
                     >
                       {loading ? <div className="w-full h-2 bg-gray-800 animate-fill" /> : "Submit"}
                     </Button>
+                    <Csv data={fetchedData} />
                   </div>
                 </TabsContent>
                 <TabsContent value="file">
