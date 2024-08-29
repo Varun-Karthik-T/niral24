@@ -39,7 +39,7 @@ export default function App() {
     }
 
     setLoading(true);
-    setShowLoader(true); 
+    setShowLoader(true);
 
     const formData = new FormData();
     if (selectedTab === "text") {
@@ -47,7 +47,7 @@ export default function App() {
       formData.append("type", "text");
     } else {
       const fileInput = document.getElementById("fileUpload");
-      formData.append("file", fileInput.files[0]); 
+      formData.append("file", fileInput.files[0]);
       formData.append("format", fileFormat);
       formData.append("type", "file");
     }
@@ -87,21 +87,24 @@ export default function App() {
               <CardTitle className="text-center text-xl font-semibold">Input Section</CardTitle>
             </CardHeader>
             <CardContent>
-              <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-                <TabsList className="flex w-full rounded-none">
+              <Tabs value={selectedTab} onValueChange={setSelectedTab} className="relative">
+                <TabsList className="flex w-full rounded-none relative">
+                  <span
+                    className="absolute bottom-0 left-0 h-1 bg-gray-800 dark:bg-gray-200 transition-transform duration-300 z-20"
+                    style={{
+                      width: selectedTab === "text" ? "50%" : "50%",
+                      transform: selectedTab === "text" ? "translateX(0%)" : "translateX(100%)",
+                    }}
+                  ></span>
                   <TabsTrigger
                     value="text"
-                    className={`flex-1 p-2 text-center border-b-2 transition-colors rounded-none ${
-                      selectedTab === "text" ? "border-gray-800" : "border-transparent"
-                    }`}
+                    className={`flex-1 p-2 text-center rounded-none relative z-10`}
                   >
                     Text
                   </TabsTrigger>
                   <TabsTrigger
                     value="file"
-                    className={`flex-1 p-2 text-center border-b-2 transition-colors rounded-none ${
-                      selectedTab === "file" ? "border-gray-800" : "border-transparent"
-                    }`}
+                    className={`flex-1 p-2 text-center rounded-none relative z-10`}
                   >
                     File
                   </TabsTrigger>
@@ -114,14 +117,14 @@ export default function App() {
                       value={textValue}
                       onChange={(e) => setTextValue(e.target.value)}
                       placeholder="Type or paste your text here..."
-                      rows={10}
+                      rows={5} 
                       className="w-full p-2 border border-gray-300 rounded"
                     />
                     <Button
                       className={`mt-4 w-full ${loading ? 'bg-gray-500' : 'bg-gray-800'} text-white hover:bg-gray-950`}
                       onClick={handleSubmit}
                     >
-                      {loading ? <div className="w-full h-2 bg-gray-800 animate-fill" /> : "Submit"}
+                      {loading ? "Loading..." : "Submit"}
                     </Button>
                   </div>
                 </TabsContent>
@@ -165,7 +168,7 @@ export default function App() {
                       className={`mt-4 w-full ${loading ? 'bg-gray-500' : 'bg-gray-800'} text-white hover:bg-gray-950`}
                       onClick={handleSubmit}
                     >
-                      {loading ? <div className="w-full h-2 bg-gray-800 animate-fill" /> : "Upload"}
+                      {loading ? "Loading..." : "Upload"}
                     </Button>
                   </div>
                 </TabsContent>
